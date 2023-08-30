@@ -24,7 +24,6 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	queue[0] = (binary_tree_t *)tree;
 	while (queue[i])
 	{
-		/* Check if there left side completion */
 		if (!queue[i]->left && queue[i]->right)
 			return (0);
 		if (queue[i]->left != NULL)
