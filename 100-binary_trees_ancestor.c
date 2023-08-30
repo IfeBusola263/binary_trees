@@ -10,24 +10,30 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 const binary_tree_t *second)
 {
+	binary_tree_t *firstNode[50];
+	int i, j;
 
 	if (first != NULL && second != NULL)
 	{
-		/**
-		 * Traversing with inorder, meaning search left side
-		 * and then the right side next
-		 */
-		if (first->parent == NULL)
-			return ((binary_tree_t *)first);
-		if (second->parent == NULL)
-			return ((binary_tree_t *)second);
-		if (first->parent && first->parent->n == second->n)
-			return ((binary_tree_t *)second);
-		if (second->parent && second->parent->n == first->n)
-			return ((binary_tree_t *)first);
-		/* if (first-parent->n == second->parent->n) */
-		/*return (first-parent); */
-		return (binary_trees_ancestor(first->parent, second->parent));
+		i = 0;
+		while (first)
+		{
+			firstNode[i] = (binary_tree_t *)first;
+			first = first->parent;
+			i++;
+		}
+
+		while (second)
+		{
+			for (j = 0; j < i; j++)
+			{
+				if (second == firstNode[j])
+					return ((binary_tree_t *)second);
+			}
+			second = second->parent;
+		}
+
+		return (NULL);
 	}
 	return (NULL);
 }
