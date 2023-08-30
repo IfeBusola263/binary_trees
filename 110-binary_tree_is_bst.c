@@ -14,6 +14,7 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 /**
  * binary_tree_is_bst_recursive - helper function for bst
  *
+ * @tree: pointer to the root of the tree to check
  * @min: Minimum expected node
  * @max: maximum expected node
  *
