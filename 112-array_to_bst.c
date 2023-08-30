@@ -8,21 +8,27 @@
  *
  * Return: pointer to the root node of the created BST, or NULL on failure
  */
-
 bst_t *array_to_bst(int *array, size_t size)
 {
-	size_t i;
-	bst_t *node;
+	size_t i, j;
+	bst_t *node = NULL;
 
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return (NULL);
 
 	for (i = 0; i < size; i++)
 	{
-		if (bst_insert(&node, array[i]) == NULL)
-            		continue;
+		for (j = 0; j < i; j++)
+		{
+			if (array[j] == array[i])
+				break;
+		}
+		if (j == i)
+		{
+			if (bst_insert(&node, array[i]) == NULL)
+				return (NULL);
+		}
 	}
+
 	return (node);
 }
-
-
